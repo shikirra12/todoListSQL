@@ -1,0 +1,25 @@
+<form class="addTask" action="/create" method="post">
+  <input type="text" name="addTask">
+  <button type="submit">Submit</button>
+</form>
+
+<h1>To Do</h1>
+{{#todos}}
+  {{#complete}}
+
+  {{/complete}}
+  {{^complete}}
+    <form class="doTask" action="/complete/{{id}}" method="post">
+      <button type="submit">{{text}}</button>
+    </form>
+    <a href="/edit/{{id}}">Edit</a>
+    <a href="/delete/{{id}}">Delete</a>
+  {{/complete}}
+{{/todos}}
+
+<h1>Completed</h1>
+{{#todos}}
+  {{#complete}}
+    {{text}}
+  {{/complete}}
+{{/todos}}

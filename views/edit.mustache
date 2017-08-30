@@ -1,0 +1,7 @@
+{{#todos}}
+  {{^complete}}
+    <form class="doTask" action="/edit/{{id}}" method="post">
+    <button type="submit">{{text}}</button>
+  </form>
+  {{/complete}}
+{{/todos}}
