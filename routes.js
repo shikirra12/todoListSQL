@@ -48,37 +48,47 @@ router.post("/complete/:id", function(req, res) {
   // let index = toDo.indexOf(task);
   // complete.push(task);
   // toDo.splice(index, 1);
-  models.todo.findById({
-    id: req.body.id
+  models.todo.update({
+    complete: true
+  }, { where: {
+    id: req.params.id
+  }
   })
-  .then(function(req, res) {
+  .then(function() {
     res.redirect("/");
   });
-  // res.redirect("/");
   });
 
-router.post('/edit/:id', function(data) {
+router.get('/edit/:id', function(req, res) {
+models.todo.findById(req.params.id)
+.then(function(data) {
+  res.render('edit', {todos: data});
+});
+});
+
+router.post('/edit/:id', function(req, res) {
   models.todo.update({
-    text: req.body.doTask
+    text: req.body.addTask
   }, { where: {
     id: req.params.id
   }
   })
   .then(function(data) {
+    console.log(data);
     res.redirect('/');
   });
 });
-//
-//   router.get('/delete/:id', function(req, res){
-//     models.todo.destroy({
-//       where: {
-//         id: req.params.id
-//       }
-//     })
-//     .then(function(data) {
-//       res.redirect('/');
-//     });
-//   });
+
+router.get('/delete/:id', function(req, res){
+  models.todo.destroy({
+    where: {
+      id: req.params.id
+    }
+  })
+  .then(function(data) {
+    res.redirect('/');
+  });
+});
 
 
 module.exports = router;

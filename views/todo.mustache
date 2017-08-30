@@ -9,11 +9,13 @@
 
   {{/complete}}
   {{^complete}}
+    <br>
     <form class="doTask" action="/complete/{{id}}" method="post">
       <button type="submit">{{text}}</button>
     </form>
     <a href="/edit/{{id}}">Edit</a>
     <a href="/delete/{{id}}">Delete</a>
+    <br>
   {{/complete}}
 {{/todos}}
 

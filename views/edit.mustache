@@ -1,7 +1,5 @@
 {{#todos}}
-  {{^complete}}
-    <form class="doTask" action="/edit/{{id}}" method="post">
-    <button type="submit">{{text}}</button>
-  </form>
-  {{/complete}}
+<form class="doTask" action="/edit/{{id}}" method="post">
+  <input type="text" name="addTask" value="{{text}}">
+  <button type="submit"></button>
 {{/todos}}
